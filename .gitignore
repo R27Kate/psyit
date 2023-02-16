@@ -1,2 +1,6 @@
 # Files virtual environment
 venv/
+
+# Files OS system
+.DS_Store
+Thumbs.db
