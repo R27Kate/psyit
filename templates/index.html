@@ -1,0 +1,83 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+     <meta charset="utf-8">
+     <meta name="viewport" 
+      content="width=device-width, initial-scale=1">
+    {% load static %}
+    <title>Название страницы</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'img/fav/favicon.ico' %}" type="image">
+    <link rel="apple-touch-icon" sizes="180x180"
+      href="img/fav/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+      href="img/fav/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+      href="img/fav/favicon-16x16.png">
+    </head>
+    <body class="dark-theme">
+        <header>
+            <img src="{% static 'img/logo02_hd.png' %}" type="image" 
+            width="90" height="30" 
+            class="d-inline-block align-top" alt="">
+        </header>
+     <div class="top-block">
+      <img src='https://via.placeholder.com/500x200.png?text=Today%27s+Image' alt="Картинка дня">
+     </div>
+     <nav>
+     <!--<div class="menu-block">-->
+        <div class="container">
+            <ul>
+            <li><a class="btn btn-1">Главная</a><li>
+            <li><a class="btn btn-2">О нас</a></li>
+            <li><a class="btn btn-3">Новости</a></li>
+            <li><a class="btn btn-4">Ресурс и мотивация</a></li>
+            <li><a class="btn btn-5">Статьи</a></li>
+            </ul>
+          </div>
+      <!--<ul>
+       <li><a href='#'class="button">Главная</a></li>
+       <li><a href='#' class="button">О нас</a></li>
+       <li><a href='#' class="button">Новости</a></li>
+       <li><a href='#' class="button">Ресурс и мотивация</a></li>
+       <li><a href='#' class="button">Статьи</a></li>
+      </ul> -->
+      </nav>
+     </div>
+     <div class="login-block">
+      <form action="#" method="post">
+       {% csrf_token %}
+       <input type="text" name="username" placeholder="Имя пользователя" required>
+       <input type="password" name="password" placeholder="Пароль" required>
+       <input type="submit" value="Войти">
+      </form>
+      <form action="#" method="post">
+       {% csrf_token %}
+       <input type="text" name="username" placeholder="Имя пользователя" required>
+       <input type="password" name="password" placeholder="Пароль" required>
+       <input type="email" name="email" placeholder="Электронная почта" required>
+       <input type="submit" value="Зарегистрироваться">
+      </form>
+     </div>
+     <div class="articles-block">
+      {% for article in latest_articles %}
+       <h3>{{ article.title }}</h3>
+       <p>{{ article.description }}</p>
+      {% endfor %}
+     </div>
+     <div class="posts-block">
+      {% for post in latest_posts %}
+       <div class="post">
+        <img src="{{ post.author.avatar.url }}" alt="{{ post.author.username }}">
+        <p>{{ post.author.username }}</p>
+        <p>{{ post.published_date }}</p>
+        <p>{{ post.text|truncatewords:15 }}</p>
+        <button>Лайк</button>
+        <button>Комментарий</button>
+       </div>
+      {% empty %}
+       <p>Записей еще нет</p>
+      {% endfor %}
+     </div>
+    </body>
+    </html>

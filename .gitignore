@@ -1,6 +1,5 @@
 # Files virtual environment
 venv/
-static/
 
 # Files OS system
 .DS_Store
